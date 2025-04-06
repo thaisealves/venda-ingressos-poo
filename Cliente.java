@@ -1,3 +1,4 @@
+//especializacao: cliente extende a classe Pessoa
 public class Cliente extends Pessoa {
     private String cpf;
 

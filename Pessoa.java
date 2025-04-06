@@ -1,3 +1,5 @@
+//classe abstrata Pessoa
+//generalização de Cliente e Funcionario
 public abstract class Pessoa {
     private String nome;
     private String email;
