@@ -1,6 +1,6 @@
 //classe abstrata Pessoa
 //generalização de Cliente e Funcionario
-public abstract class Pessoa {
+public abstract class Pessoa implements IIdentificavel {
     private String nome;
     private String email;
     private String telefone;
@@ -38,9 +38,12 @@ public abstract class Pessoa {
     public boolean isValidEmail() {
         return email != null && email.contains("@") && email.contains(".");
     }
+
     public void removerPessoa() {
         System.out.println("Pessoa removida com sucesso.");
     }
-    protected abstract String getIdentificador();
+
+    public abstract String getIdentificador(); // utilizado polimorfismo, em cliente retorna CPF e em funcionario
+                                               // retorna matricula
 
 }

@@ -29,8 +29,9 @@ public class Repositorio<T> {
 
     public T buscar(String identificador) {
         for (T item : lista) {
-            if (item instanceof Pessoa) {
-                if (((Pessoa) item).getIdentificador().equals(identificador)) {
+            if (item instanceof IIdentificavel) {
+                IIdentificavel identificavel = (IIdentificavel) item;
+                if (identificavel.getIdentificador().equals(identificador)) {
                     return item;
                 }
             }

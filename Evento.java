@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Evento implements IAtualizarEstatistica {
+public class Evento implements IAtualizarEstatistica, IIdentificavel {
+
     private String nome;
     private String data;
     private String local;
@@ -9,7 +10,7 @@ public class Evento implements IAtualizarEstatistica {
     static int proximoId = 1;
     private int capacidade;
 
-    //coleções de ingressos comprados
+    // coleções de ingressos comprados
     private List<Ingresso> ingressosComprados; // composição: evento dono de ingressos
 
     public Evento(String nome, String data, String local) {
@@ -17,12 +18,12 @@ public class Evento implements IAtualizarEstatistica {
         this.data = data;
         this.local = local;
         this.id = proximoId++;
-        this.capacidade = 100; //capacidade padrão caso eu nao quera definir
+        this.capacidade = 100; // capacidade padrão caso eu nao quera definir
         this.ingressosComprados = new ArrayList<>();
     }
 
-    //composição com a classe Ingresso
-    //método para adicionar um ingresso à lista de ingressos comprados
+    // composição com a classe Ingresso
+    // método para adicionar um ingresso à lista de ingressos comprados
     public void adicionarIngresso(Ingresso ingresso) {
         if (ingressosComprados.size() < capacidade) {
             ingressosComprados.add(ingresso);
@@ -31,8 +32,8 @@ public class Evento implements IAtualizarEstatistica {
         }
     }
 
-    //método para remover um ingresso da lista de ingressos comprados
-    //associação com a classe Ingresso
+    // método para remover um ingresso da lista de ingressos comprados
+    // associação com a classe Ingresso
     public void removerIngresso(Ingresso ingresso) {
         ingressosComprados.remove(ingresso);
     }
@@ -85,7 +86,7 @@ public class Evento implements IAtualizarEstatistica {
         this.local = local;
     }
 
-    //calculo da receita total do evento
+    // calculo da receita total do evento
     public double calcularReceita() {
         double receita = 0;
         for (Ingresso ingresso : ingressosComprados) {
@@ -94,12 +95,12 @@ public class Evento implements IAtualizarEstatistica {
         return receita;
     }
 
-    //ingressos disponíveis no evento
+    // ingressos disponíveis no evento
     public int ingressosDisponiveis() {
         return capacidade - ingressosComprados.size();
     }
 
-    //sobrescrita de método da interface IAtualizarEstatistica
+    // sobrescrita de método da interface IAtualizarEstatistica
     @Override
     public void atualizarEstatistica() {
         System.out.println("Atualizando estatísticas do evento: " + nome);
@@ -107,4 +108,8 @@ public class Evento implements IAtualizarEstatistica {
         System.out.println("Receita total: R$ " + calcularReceita());
     }
 
+    @Override
+    public String getIdentificador() {
+        return String.valueOf(this.id);
+    }
 }
